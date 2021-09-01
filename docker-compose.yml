@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  # REST API
+  api:
+    container_name: api
+    build: ./api
+    ports:
+      - "3000:3000"
+    volumes:
+      - logs:/app/logs
+      - ./api:/app
+      - /app/node_modules
+    links:
+      - mongo
+    env_file:
+      - ./env/api.env
+    depends_on:
+      - mongo
+
+  # MONGO DATABASE
+  mongo:
+    container_name: videosdb
+    image: "mongo"
+    volumes:
+      - data:/data/db
+    env_file:
+      - ./env/mongo.env
+    ports:
+      - "27017:27017"
+    logging:
+      driver: none
+
+  # FRONTEND REACT APP
+  reactapp:
+    build: ./react-app
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./react-app/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
+
+volumes:
+  data:
+  logs:

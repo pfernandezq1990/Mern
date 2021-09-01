@@ -1,0 +1,26 @@
+@api = http://localhost:3000
+
+GET {{api}}/videos
+
+###
+
+GET {{api}}/videos/1
+
+###
+
+POST {{api}}/videos
+Content-Type: application/json
+
+{
+    "url": "https://youtube.com/watch?v=zvxlbio_f34",
+    "title": "fazt video",
+    "description": "este es un video de prueba"
+}
+
+###
+
+DELETE {{api}}/videos/1
+
+###
+
+PUT {{api}}/videos/1
