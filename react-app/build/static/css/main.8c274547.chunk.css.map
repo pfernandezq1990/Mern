@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Videos/VideoItem.css"],"names":[],"mappings":"AAAA,kBACE,qBACF","file":"main.8c274547.chunk.css","sourcesContent":[".video-card:hover {\n  border: 1px solid #333;\n}\n"]}

@@ -43,6 +43,14 @@ services:
     depends_on:
       - api
 
+  # Frontend 2 con GraphQL
+  graphql:
+    build: ./graphql-typescript-react
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./graphql-typescript-react/src:/app/src
+
 volumes:
   data:
   logs:
