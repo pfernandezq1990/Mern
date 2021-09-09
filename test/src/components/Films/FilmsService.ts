@@ -1,13 +1,7 @@
-export interface Movie {
-    _id: string;
-    title: string;
-    genre: { _id: string; name: string };
-    numberInStock: number;
-    dailyRentalRate: number;
-    liked: boolean;
-  }
+import { useState } from 'react';
+import { Movie } from './Film'
   
-  const movies: Movie[] = [
+const movies: Movie[] = [
     {
       _id: "5b21ca3eeb7f6fbccd471815",
       title: "Terminator",
@@ -80,10 +74,11 @@ export interface Movie {
       dailyRentalRate: 3.5,
       liked: false,
     },
-  ];
-  
-  export function getMovies(): Movie[] {
-    return movies;
-  }
+];
 
-  export default Movie;
+
+
+export const getMovies = () => {
+    return movies;
+}
+

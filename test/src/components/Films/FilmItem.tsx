@@ -1,5 +1,6 @@
-import React from "react";
-import { Movie } from "./FilmsService";
+import React, { useState } from "react";
+import { Movie } from "./Film";
+import { getMovies } from "./FilmsService";
 
 interface Props {
   movie: Movie;
@@ -7,23 +8,30 @@ interface Props {
 }
 
 const FilmItem = ({ movie, loadMovies }: Props) => {
-  const handleDelete = (id: string) => {};
+  const [movies, setMovies] = useState<Movie[]>();
+
+  const handleDelete = (id: string) => {
+    const res = getMovies();
+    res.find((movie) => movie._id === id);
+    movie.liked = false;
+    setMovies(res);
+    console.log(res);
+    console.log(movie);
+    loadMovies();
+  };
 
   return (
-    <div className="col-md-4 mb-3">
-      <div className="card card-body video-card" style={{ cursor: "pointer" }}>
-        <div className="d-flex justify-content-between">
-          <h1>{movie.title}</h1>
-          <span
-            className="text-danger"
-            onClick={() => movie._id && handleDelete(movie._id)}
-          >
-            X
-          </span>
-        </div>
-        <p>{movie.genre}</p>
-      </div>
-    </div>
+    <tr>
+      <td>{movie.title}</td>
+      <td>{movie.genre?.name}</td>
+      <td>{movie.numberInStock}</td>
+      <td>{movie.dailyRentalRate}</td>
+      <td>
+        <button onClick={() => movie._id && handleDelete(movie._id)}>
+          Eliminar
+        </button>
+      </td>
+    </tr>
   );
 };
 
